@@ -14,12 +14,12 @@ protocol DataControllerProtocol {
 	func deleteExercise() -> Result<String, Error>
 	
 	// Meal
-	func createMeal() -> Result<Meal, Error>
-	func deleteMeal() -> Result<String, Error>
+//	func createMeal() -> Result<Meal, Error>
+//	func deleteMeal() -> Result<String, Error>
 	
 	// Workout
-	func createWorkout() -> Result<Workout, Error>
-	func deleteWorkout() -> Result<String, Error>
+//	func createWorkout() -> Result<Workout, Error>
+//	func deleteWorkout() -> Result<String, Error>
 }
 
 
@@ -50,9 +50,17 @@ class DataController: DataControllerProtocol {
 		newExercise.name = exercise.name
 		do {
 			try viewContext.save()
+			
+			return .success(newExercise)
 		} catch {
 			print("Could not create exercise: \(error.localizedDescription)")
+			
+			return .failure(error)
 		}
+		
+	}
+	
+	func deleteExercise() -> Result<String, Error> {
 		
 	}
 	
