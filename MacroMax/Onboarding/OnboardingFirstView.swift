@@ -15,7 +15,12 @@ struct OnboardingFirstView: View {
 			
 			Color("backgroundColor")
 			
+			CirclesView(size: 150, lineWidth: 10, spacing: 40)
+				.foregroundStyle(Color.accent)
+				.offset(x: UIScreen.main.bounds.width / 2, y: -UIScreen.main.bounds.height / 3)
+			
 			CirclesView(size: 250, lineWidth: 10, spacing: 10)
+				.foregroundStyle(.accent.opacity(0.1))
 			
 			VStack {
 				

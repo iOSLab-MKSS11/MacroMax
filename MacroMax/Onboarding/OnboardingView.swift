@@ -10,42 +10,77 @@ import SwiftUI
 struct OnboardingView: View {
 	
 	@State var currentViewID = 0
+	@State var nextScreenButtonIsPresented: Bool = true
 	
 	var body: some View {
 		ZStack {
 			
-			OnboardingFirstView()
-				.offset(x: currentViewID == 0 ? 0 : -UIScreen.main.bounds.width)
-			
-			OnboardingSecondView()
-				.offset(x: currentViewID == 1 ? 0 : currentViewID == 2 ? -UIScreen.main.bounds.width : UIScreen.main.bounds.width)
-			
-			Color.green
-				.offset(x: currentViewID == 2 ? 0 : UIScreen.main.bounds.width)
+			TabView(selection: $currentViewID) {
+				OnboardingFirstView()
+					.tag(0)
+				
+				OnboardingSecondView()
+					.tag(1)
+				
+				Color.green
+					.tag(2)
+				
+			}
+			.highPriorityGesture (
+				DragGesture()
+			)
+			.ignoresSafeArea()
+			.tabViewStyle(.page)
 			
 			VStack {
 				
 				Spacer()
 				
-				Button {
-					withAnimation(.easeInOut(duration: 2)) {
-						if currentViewID != 2 {
-							currentViewID += 1
+				// TODO: Colocar variáveis na VM
+					VStack(spacing: 20) {
+						if nextScreenButtonIsPresented {
+							Button {
+								withAnimation(.easeInOut(duration: 2)) {
+									if currentViewID != 2 {
+										currentViewID += 1
+									}
+								}
+								if currentViewID == 2 {
+									nextScreenButtonIsPresented = false
+								}
+							} label: {
+								Text("Próxima tela")
+									.padding(10)
+									.foregroundStyle(.black)
+							}
+							.font(.largeTitle)
+							.bold()
+							.buttonStyle(.glassProminent)
+						}
+						
+						if currentViewID > 0 {
+							Button {
+								withAnimation(.easeInOut(duration: 2)) {
+									if currentViewID > 0 {
+										currentViewID -= 1
+									}
+								}
+							} label: {
+								Text("Voltar")
+									.foregroundStyle(.black)
+									.bold()
+							}
+							.buttonStyle(.glassProminent)
+
 						}
 					}
-				} label: {
-					Text("Próxima tela")
-				}
-				.font(.largeTitle)
-				.bold()
-				.buttonStyle(.borderedProminent)
-				.padding(.bottom, 100)
+					.padding(.bottom, 100)
+				
 			}
 			
 			
 			
 		}
-		.ignoresSafeArea()
 	}
 }
 
