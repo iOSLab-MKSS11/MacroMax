@@ -106,6 +106,20 @@ final class DataController: DataControllerProtocol {
 		
 	}
 	
+	func createProfile(wrapper: ProfileWrapper) -> Result<Profile, Error> {
+		let profile = Profile(context: self.viewContext)
+		profile.id = wrapper.id
+		profile.name = wrapper.name
+		profile.password = wrapper.password
+		profile.user = wrapper.username
+		
+		do {
+			try viewContext.save()
+			return .success(profile)
+		} catch {
+			return .failure(error)
+		}
+	}
 }
 
 enum DataError: Error {

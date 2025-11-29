@@ -22,7 +22,7 @@ struct OnboardingView: View {
 				OnboardingSecondView()
 					.tag(1)
 				
-				Color.green
+				RegisterView()
 					.tag(2)
 				
 			}
