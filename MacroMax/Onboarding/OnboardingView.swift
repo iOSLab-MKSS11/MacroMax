@@ -22,7 +22,7 @@ struct OnboardingView: View {
 				OnboardingSecondView()
 					.tag(1)
 				
-				RegisterView()
+				OnboardingThirdView()
 					.tag(2)
 				
 			}
@@ -37,7 +37,23 @@ struct OnboardingView: View {
 				Spacer()
 				
 				// TODO: Colocar variáveis na VM
-					VStack(spacing: 20) {
+					HStack(spacing: 20) {
+						if currentViewID > 0 {
+							Button {
+								withAnimation(.easeInOut(duration: 2)) {
+									if currentViewID > 0 {
+										currentViewID -= 1
+									}
+								}
+							} label: {
+								Text("Voltar")
+									.foregroundStyle(.black)
+									.bold()
+							}
+							.buttonStyle(.glassProminent)
+
+						}
+						
 						if nextScreenButtonIsPresented {
 							Button {
 								withAnimation(.easeInOut(duration: 2)) {
@@ -58,21 +74,7 @@ struct OnboardingView: View {
 							.buttonStyle(.glassProminent)
 						}
 						
-						if currentViewID > 0 {
-							Button {
-								withAnimation(.easeInOut(duration: 2)) {
-									if currentViewID > 0 {
-										currentViewID -= 1
-									}
-								}
-							} label: {
-								Text("Voltar")
-									.foregroundStyle(.black)
-									.bold()
-							}
-							.buttonStyle(.glassProminent)
-
-						}
+						
 					}
 					.padding(.bottom, 100)
 				

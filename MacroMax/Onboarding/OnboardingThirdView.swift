@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RegisterView: View {
+struct OnboardingThirdView: View {
 	
 	@Environment(\.dismiss) var dismiss
 	
@@ -21,11 +21,11 @@ struct RegisterView: View {
 			Color("backgroundColor")
 				.ignoresSafeArea()
 			
-			CirclesView(size: 40, lineWidth: 10, spacing: 40)
-				.offset(x: -20, y: -20)
+			CirclesView(size: 150, lineWidth: 13, spacing: 40)
+				.offset(x: -20, y: -200)
 				.foregroundStyle(.accent)
 			
-			CirclesView(size: 100, lineWidth: 20, spacing: 50)
+			CirclesView(size: 100, lineWidth: 10, spacing: 30)
 				.offset(x: UIScreen.main.bounds.width / 3, y: 100)
 				.foregroundStyle(.accent)
 			
@@ -55,5 +55,5 @@ struct RegisterView: View {
 
 
 #Preview {
-	RegisterView()
+	OnboardingThirdView()
 }
