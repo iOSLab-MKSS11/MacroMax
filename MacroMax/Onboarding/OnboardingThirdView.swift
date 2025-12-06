@@ -31,7 +31,7 @@ struct OnboardingThirdView: View {
 			
 			VStack {
 				Text("Informe seu nome")
-					.font(.largeTitle)
+					.font(Design.Typography.title)
 					.foregroundStyle(.accent)
 				
 				TextField("Digite o seu nome", text: $viewModel.name)
